@@ -6,5 +6,5 @@ Dynamic Link Library Version.
 Test alpha version.
 
 # 2021/2/7 23:50 Update Version 0.11 Alpha
-Fix bug.
+Fix bug.\n
 Add createRect function.
