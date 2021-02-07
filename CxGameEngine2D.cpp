@@ -4,15 +4,24 @@
 #include "CxGameEngine2D.h"
 #include <Windows.h>
 #include <stdio.h>
+#include <utility>
 
 WNDCLASS wc;
 HINSTANCE hInstance;
 
-DECLSPEC LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
+LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
 	switch (message) {
 	case WM_DESTROY:
 		DestroyWindow(hWnd);
 		return 0;
+	case WM_PAINT:
+		if (bool_message == true) {
+			hdc = BeginPaint(hWnd, &paintStruct);
+			Rectangle(hdc, _rect_left, _rect_top, _rect_right, _rect_bottom);
+			EndPaint(hWnd, &paintStruct);
+			bool_message = NULL;
+			break;
+		}
 	default:
 		return DefWindowProc(hWnd, message, wParam, lParam);
 	}
@@ -85,7 +94,7 @@ DECLSPEC int createNewWindow(const char* lpClassName, const char* lpWindowName, 
 	else {
 		wc.lpszMenuName = (LPCSTR)lpszMenuName;
 	}
-	wc.lpszClassName = (LPCSTR)lpszClassName;
+	wc.lpszClassName = TEXT(lpClassName);
 
 	if (!RegisterClass(&wc)) {
 		MessageBox(NULL, "Call to RegisterClassEx failed!", "Windows Desktop Guided Tour", NULL);
@@ -111,9 +120,17 @@ DECLSPEC int createNewWindow(const char* lpClassName, const char* lpWindowName, 
 		DispatchMessage(&msg);
 	}
 
-	return 0;
-}
+	return (int)msg.wParam;
+};
 
+DECLSPEC int createRect(int rect_left, int rect_top, int rect_right, int rect_bottom) {
+	_rect_left = rect_left;
+	_rect_top = rect_top;
+	_rect_right = rect_right;
+	_rect_bottom = rect_bottom;
+	bool_message = true;
+	return 0;
+};
 
 BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved) {
 	switch (fdwReason) {
