@@ -15,6 +15,11 @@ Dynamic Link Library Version.
 >  Fixed the problem of drawing(createRect) only one rectangle. 
 
 #### Add more window styles.  
->  classdc|doubleclicks|noclose|owndc|savebits.
+>  1.classdc.
+>  2.doubleclicks.
+>  3.noclose.
+>  4.owndc.
+>  5.savebits.
 
 #### Update Dynamic Link Library(dll) Release File.
+
