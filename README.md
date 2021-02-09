@@ -12,6 +12,9 @@ Dynamic Link Library Version.
 
 ## 2021/2/9 15:00 Update Version 0.12 Alpha
 >Fix bugs.
->>>Fixed the problem of drawing(createRect) only one rectangle.  
+>>>Fixed the problem of drawing(createRect) only one rectangle. 
+
 >Add more window styles.  
+>>classdc|doubleclicks|noclose|owndc|savebits.
+
 >Add Dynamic Link Library(dll) Release File.
